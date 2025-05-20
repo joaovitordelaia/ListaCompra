@@ -1,0 +1,17 @@
+﻿namespace ListaCompra.Profile;
+using AutoMapper;
+using ListaCompra.Data.DTOs;
+using ListaCompra.Models;
+
+public class ProdutoProfile : Profile 
+{
+    public ProdutoProfile()
+    {
+        CreateMap<Produtos, CreateProdutoDto>();
+        CreateMap<CreateProdutoDto, Produtos>();
+        CreateMap<Produtos, ReadProdutoDto>();
+        CreateMap<ReadProdutoDto, Produtos>();
+        CreateMap<Produtos, UpdateProdutoDto>();
+        CreateMap<UpdateProdutoDto, Produtos>();
+    }
+}
