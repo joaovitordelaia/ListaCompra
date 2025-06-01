@@ -1,5 +1,7 @@
 using ListaCompra.Data;
+using ListaCompra.Models;
 using ListaCompra.Profile;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("ListaConnection");
 
-builder.Services.AddDbContext<ProdutoContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ProdutoContext>(options =>options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<UsuarioDbContext>(options =>options.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+    .AddEntityFrameworkStores<UsuarioDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(ProdutoProfile));
 

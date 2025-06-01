@@ -21,7 +21,6 @@ public class ProdutoController : ControllerBase
         _mapper = mapper;
     }
 
-
     [HttpPost("CadastrarProduto")]
     public IActionResult CriarProduto([FromBody] CreateProdutoDto produtoDto)
     {

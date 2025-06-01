@@ -7,11 +7,8 @@ public class ProdutoProfile : Profile
 {
     public ProdutoProfile()
     {
-        CreateMap<Produtos, CreateProdutoDto>();
         CreateMap<CreateProdutoDto, Produtos>();
-        CreateMap<Produtos, ReadProdutoDto>();
-        CreateMap<ReadProdutoDto, Produtos>();
-        CreateMap<Produtos, UpdateProdutoDto>();
         CreateMap<UpdateProdutoDto, Produtos>();
+        CreateMap<Produtos, ReadProdutoDto>();
     }
 }
