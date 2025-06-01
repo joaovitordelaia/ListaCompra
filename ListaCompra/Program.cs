@@ -1,6 +1,7 @@
 using ListaCompra.Data;
 using ListaCompra.Models;
 using ListaCompra.Profile;
+using ListaCompra.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<Usuario, IdentityRole>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(ProdutoProfile));
+builder.Services.AddScoped<CadastroService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
