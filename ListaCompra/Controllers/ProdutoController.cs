@@ -2,14 +2,17 @@
 using ListaCompra.Data;
 using ListaCompra.Data.DTOs;
 using ListaCompra.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Numerics;
 
 namespace ListaCompra.Controllers;
 
-[Route("[Controller]")]
+[Authorize]
+[Route("[controller]")]
 [Produces("application/json")]
+
 public class ProdutoController : ControllerBase
 {
     private ProdutoContext _context;
@@ -20,7 +23,7 @@ public class ProdutoController : ControllerBase
         _context = context;
         _mapper = mapper;
     }
-
+    
     [HttpPost("CadastrarProduto")]
     public IActionResult CriarProduto([FromBody] CreateProdutoDto produtoDto)
     {

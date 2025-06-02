@@ -12,9 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-//
+var connectionString = builder.Configuration["ConnectionStrings:ListaConnection"];
 
-var connectionString = builder.Configuration.GetConnectionString("ListaConnection");
+//var connectionString = builder.Configuration.GetConnectionString(connectionStringSecret);
 
 builder.Services.AddDbContext<ProdutoContext>(options =>options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<UsuarioDbContext>(options =>options.UseSqlServer(connectionString));
@@ -29,17 +29,18 @@ builder.Services.AddAutoMapper(typeof(ProdutoProfile));
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<TokenService>();
 
+// CONFIGURAÇÃO DO AUTENTIFICADOR
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
-}).AddJwtBearer(options =>
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(options =>
 {
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey
-            (Encoding.UTF8.GetBytes("F3SI9894FIOHWWEWEVCVCX76554615REWO94FIOHUY3428")),
+            (Encoding.UTF8.GetBytes(builder.Configuration["SymmetricSecurityKey"])),
         ValidateAudience = false,
         ValidateIssuer = false,
         ClockSkew = TimeSpan.Zero

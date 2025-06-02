@@ -1,0 +1,29 @@
+﻿criar secrets PARA O SymmetricSecurityKey
+
+0 - no terminal do projeto
+
+1 - dotnet user-secrets init
+
+2 - dotnet user-secrets set "SymmetricSecurityKey" "SUA_CHAVE_AQUI"
+
+AGORA PARA O BANCO
+
+1 - dotnet user-secrets set "ConnectionStrings:ListaConnection" "Server=localhost\\SQLEXPRESS;Database=gestaoCompras;User Id=sa;Password=1234;TrustServerCertificate=True;"
+
+2 - no program.cs = var connectionString = builder.Configuration["ConnectionStrings:ListaConnection"];
+
+	builder.Services.AddDbContext<ProdutoContext>(options =>options.UseSqlServer(connectionString));
+
+3 - no TokenService: é criado um ctor para ser injetado a Configuration ficando assim
+
+        private IConfiguration _configuration;
+
+        public TokenService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+4 - Feito o passo a cima é só usar como no program
+
+    var chave = new SymmetricSecurityKey
+    (Encoding.UTF8.GetBytes(_configuration["SymmetricSecurityKey"]));
