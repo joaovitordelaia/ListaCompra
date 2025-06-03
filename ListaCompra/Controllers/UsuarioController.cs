@@ -39,7 +39,4 @@ public class UsuarioController : ControllerBase
        return Ok(token);
     }
 
-
-
-
 }

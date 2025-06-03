@@ -16,11 +16,10 @@ var connectionString = builder.Configuration["ConnectionStrings:ListaConnection"
 
 //var connectionString = builder.Configuration.GetConnectionString(connectionStringSecret);
 
-builder.Services.AddDbContext<ProdutoContext>(options =>options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<UsuarioDbContext>(options =>options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<Usuario, IdentityRole>()
-    .AddEntityFrameworkStores<UsuarioDbContext>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(typeof(ProdutoProfile));

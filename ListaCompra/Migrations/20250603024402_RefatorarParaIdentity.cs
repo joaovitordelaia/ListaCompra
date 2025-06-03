@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ListaCompra.Migrations.UsuarioDb
+namespace ListaCompra.Migrations
 {
     /// <inheritdoc />
-    public partial class CriandooUsuario : Migration
+    public partial class RefatorarParaIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -157,6 +157,47 @@ namespace ListaCompra.Migrations.UsuarioDb
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ListaDeCompras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Datacriacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ListaDeCompras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ListaDeCompras_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Product_Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Value = table.Column<float>(type: "real", nullable: false),
+                    Quantity = table.Column<float>(type: "real", nullable: false),
+                    ListaDeComprasId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produtos_ListaDeCompras_ListaDeComprasId",
+                        column: x => x.ListaDeComprasId,
+                        principalTable: "ListaDeCompras",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -195,6 +236,16 @@ namespace ListaCompra.Migrations.UsuarioDb
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ListaDeCompras_UsuarioId",
+                table: "ListaDeCompras",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_ListaDeComprasId",
+                table: "Produtos",
+                column: "ListaDeComprasId");
         }
 
         /// <inheritdoc />
@@ -216,7 +267,13 @@ namespace ListaCompra.Migrations.UsuarioDb
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Produtos");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "ListaDeCompras");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

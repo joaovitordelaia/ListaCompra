@@ -8,19 +8,78 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ListaCompra.Migrations.UsuarioDb
+namespace ListaCompra.Migrations
 {
-    [DbContext(typeof(UsuarioDbContext))]
-    partial class UsuarioDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.16")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ListaCompra.Models.ListaDeCompras", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Datacriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("ListaDeCompras");
+                });
+
+            modelBuilder.Entity("ListaCompra.Models.Produtos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ListaDeComprasId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Product_Name")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<float?>("Quantity")
+                        .IsRequired()
+                        .HasColumnType("real");
+
+                    b.Property<float?>("Value")
+                        .IsRequired()
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ListaDeComprasId");
+
+                    b.ToTable("Produtos");
+                });
 
             modelBuilder.Entity("ListaCompra.Models.Usuario", b =>
                 {
@@ -223,6 +282,22 @@ namespace ListaCompra.Migrations.UsuarioDb
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ListaCompra.Models.ListaDeCompras", b =>
+                {
+                    b.HasOne("ListaCompra.Models.Usuario", "UsuarioCriador")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("UsuarioCriador");
+                });
+
+            modelBuilder.Entity("ListaCompra.Models.Produtos", b =>
+                {
+                    b.HasOne("ListaCompra.Models.ListaDeCompras", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("ListaDeComprasId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -272,6 +347,11 @@ namespace ListaCompra.Migrations.UsuarioDb
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ListaCompra.Models.ListaDeCompras", b =>
+                {
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

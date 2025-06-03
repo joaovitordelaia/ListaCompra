@@ -15,10 +15,10 @@ namespace ListaCompra.Controllers;
 
 public class ProdutoController : ControllerBase
 {
-    private ProdutoContext _context;
+    private ApplicationDbContext _context;
     private IMapper _mapper;
 
-    public ProdutoController(ProdutoContext context, IMapper mapper)
+    public ProdutoController(ApplicationDbContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
