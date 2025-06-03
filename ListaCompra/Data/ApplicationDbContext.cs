@@ -10,7 +10,31 @@ public class ApplicationDbContext : IdentityDbContext<Usuario>
     {
     }
 
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<ListaCompartilhadas>()
+            .HasKey(listaCompartilhada => new { listaCompartilhada.UsuarioId, listaCompartilhada.ListaId });
+
+        builder.Entity<ListaCompartilhadas>()
+
+            .HasOne(listaCompartilhada => listaCompartilhada.Lista)
+
+            .WithMany(ListaCompra => ListaCompra.ListaCompartilhada)
+
+            .HasForeignKey(listaCompartilhada => listaCompartilhada.ListaId);
+
+        builder.Entity<ListaCompartilhadas>()
+
+            .HasOne(listaCompartilhada => listaCompartilhada.Usuario)
+
+            .WithMany(Usuario => Usuario.ListaCompartilhada)
+
+            .HasForeignKey(listaCompartilhada => listaCompartilhada.UsuarioId);
+
+    }
+
     public DbSet<Produtos> Produtos { get; set; }
     public DbSet<ListaDeCompras> ListaDeCompras { get; set; }
+    public DbSet<ListaCompartilhadas> ListaCompartilhada { get; set; }
 }
 

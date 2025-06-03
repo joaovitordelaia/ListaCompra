@@ -18,4 +18,6 @@ public class ListaDeCompras
 
     public virtual ICollection<Produtos> Produtos { get; set; }
 
+    public virtual ICollection<ListaCompartilhadas> ListaCompartilhada { get; set; }
+
 }

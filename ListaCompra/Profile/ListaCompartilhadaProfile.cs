@@ -7,8 +7,8 @@ public class ListaCompartilhadaProfile : Profile
 {
     public ListaCompartilhadaProfile()
     {
-        CreateMap<CreateListaCompartilhadaDto, ListaCompartilhada>();
-        CreateMap<ListaCompartilhada, ReadListaCompartilhadaDto>();
+        CreateMap<CreateListaCompartilhadaDto, ListaCompartilhadas>();
+        CreateMap<ListaCompartilhadas, ReadListaCompartilhadaDto>();
     }
 
 }
