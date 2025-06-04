@@ -35,7 +35,7 @@ public class ListaCompartilhadaController : ControllerBase
 
 
     [HttpGet("{usuarioId}/{listaId}")]
-    public IActionResult RecuperaSessoesPorId(int usuarioId, int listaId)
+    public IActionResult RecuperaSessoesPorId(string usuarioId, int listaId)
     {
         ListaCompartilhadas listaCompartilhada = _contexto.ListaCompartilhada.FirstOrDefault(listaCompart => listaCompart.UsuarioId == usuarioId && listaCompart.ListaId == listaId);
         if (listaCompartilhada != null)
