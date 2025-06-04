@@ -9,4 +9,6 @@ public class ListaCompartilhadas
     public int? ListaId { get; set; }
 
     public virtual ListaDeCompras Lista { get; set; }
+
+    public DateTime Datacriacao { get; set; }
 }

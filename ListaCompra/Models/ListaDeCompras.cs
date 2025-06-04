@@ -10,7 +10,7 @@ public class ListaDeCompras
 
     public string Nome { get; set; }
 
-    public DateTime Datacriacao { get; set; } = DateTime.Now;
+    public DateTime Datacriacao { get; set; }
 
     public string? UsuarioId { get; set; }
 

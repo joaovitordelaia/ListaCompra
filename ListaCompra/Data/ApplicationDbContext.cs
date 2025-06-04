@@ -1,6 +1,7 @@
 ﻿using ListaCompra.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace ListaCompra.Data;
 
@@ -30,6 +31,14 @@ public class ApplicationDbContext : IdentityDbContext<Usuario>
             .WithMany(Usuario => Usuario.ListaCompartilhada)
 
             .HasForeignKey(listaCompartilhada => listaCompartilhada.UsuarioId);
+
+        builder.Entity<ListaCompartilhadas>()
+                .Property(p => p.Datacriacao)
+                .HasDefaultValueSql("GETDATE()");
+
+        builder.Entity<ListaDeCompras>()
+            .Property(p => p.Datacriacao)
+            .HasDefaultValueSql("GETDATE()");
 
     }
 
