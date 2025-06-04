@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext<Usuario>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        base.OnModelCreating(builder);
         builder.Entity<ListaCompartilhadas>()
             .HasKey(listaCompartilhada => new { listaCompartilhada.UsuarioId, listaCompartilhada.ListaId });
 
