@@ -4,6 +4,7 @@ using ListaCompra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ListaCompra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250604155118_mudancaDataLista")]
+    partial class mudancaDataLista
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,25 +79,25 @@ namespace ListaCompra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Descricao")
+                    b.Property<int?>("ListaDeComprasId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Product_Name")
                         .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<int?>("ListaId")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("Quantidade")
+                    b.Property<float?>("Quantity")
                         .IsRequired()
                         .HasColumnType("real");
 
-                    b.Property<float?>("Valor")
+                    b.Property<float?>("Value")
                         .IsRequired()
                         .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ListaId");
+                    b.HasIndex("ListaDeComprasId");
 
                     b.ToTable("Produtos");
                 });
@@ -330,11 +333,9 @@ namespace ListaCompra.Migrations
 
             modelBuilder.Entity("ListaCompra.Models.Produtos", b =>
                 {
-                    b.HasOne("ListaCompra.Models.ListaDeCompras", "Lista")
+                    b.HasOne("ListaCompra.Models.ListaDeCompras", null)
                         .WithMany("Produtos")
-                        .HasForeignKey("ListaId");
-
-                    b.Navigation("Lista");
+                        .HasForeignKey("ListaDeComprasId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

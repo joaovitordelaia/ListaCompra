@@ -43,5 +43,15 @@ public class ListaCompraController : ControllerBase
 
     }
 
+    [HttpGet("ListarListas")]
+    public IEnumerable<ReadListaCompraDto> ListarListaCompra()
+    {
+        var listasDeCompra = _contexto.ListaDeCompras.ToList();
+
+        var listaDto = _mapper.Map<List<ReadListaCompraDto>>(listasDeCompra);
+        return listaDto;
+
+    }
+
 
 }

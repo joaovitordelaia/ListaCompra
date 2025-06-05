@@ -33,13 +33,6 @@ public class ApplicationDbContext : IdentityDbContext<Usuario>
 
             .HasForeignKey(listaCompartilhada => listaCompartilhada.UsuarioId);
 
-        builder.Entity<ListaCompartilhadas>()
-                .Property(p => p.Datacriacao)
-                .HasDefaultValueSql("GETDATE()");
-
-        builder.Entity<ListaDeCompras>()
-            .Property(p => p.Datacriacao)
-            .HasDefaultValueSql("GETDATE()");
 
     }
 

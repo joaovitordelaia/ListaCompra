@@ -11,7 +11,9 @@ public class ListaCompraProfile : Profile
         CreateMap<UpdateListaCompraDto, ListaDeCompras>();
         CreateMap<ListaDeCompras, ReadListaCompraDto>()
             .ForMember(ListaCompraDto => ListaCompraDto.UsuarioCriador,
-            opts => opts.MapFrom(ListaCompra => ListaCompra.UsuarioCriador.UserName));
+            opts => opts.MapFrom(ListaCompra => ListaCompra.UsuarioCriador.UserName))
+            .ForMember(ListaCompraDto => ListaCompraDto.Produtos,
+            opts => opts.MapFrom(ListaCompra => ListaCompra.Produtos));
 
     }
 }

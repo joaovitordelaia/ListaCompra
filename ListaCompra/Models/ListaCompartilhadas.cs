@@ -10,5 +10,5 @@ public class ListaCompartilhadas
 
     public virtual ListaDeCompras Lista { get; set; }
 
-    public DateTime Datacriacao { get; set; }
+    public DateTime Datacriacao { get; set; } = DateTime.Now;
 }

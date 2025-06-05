@@ -9,7 +9,7 @@ using System.Numerics;
 
 namespace ListaCompra.Controllers;
 
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
 [Produces("application/json")]
 
@@ -27,8 +27,8 @@ public class ProdutoController : ControllerBase
     [HttpPost("CadastrarProduto")]
     public IActionResult CriarProduto([FromBody] CreateProdutoDto produtoDto)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        //if (!ModelState.IsValid)
+        //    return BadRequest(ModelState);
 
         Produtos produto = _mapper.Map<Produtos>(produtoDto);
         _context.Produtos.Add(produto);

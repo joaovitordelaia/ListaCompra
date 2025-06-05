@@ -5,6 +5,7 @@ using ListaCompra.Models;
 using Microsoft.AspNetCore.JsonPatch.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace ListaCompra.Controllers;
 
@@ -30,11 +31,11 @@ public class ListaCompartilhadaController : ControllerBase
         _contexto.SaveChanges();
 
         return CreatedAtAction(nameof(RecuperaSessoesPorId),
-            new { FilmeId = listaCompartilhada.UsuarioId, listaId = listaCompartilhada.ListaId }, listaCompartilhada);
+            new { usuarioId = listaCompartilhada.UsuarioId, listaId = listaCompartilhada.ListaId }, listaCompartilhada);
     }
 
 
-    [HttpGet("{usuarioId}/{listaId}")]
+    [HttpGet("vinculo/{usuarioId}/{listaId}")]
     public IActionResult RecuperaSessoesPorId(string usuarioId, int listaId)
     {
         ListaCompartilhadas listaCompartilhada = _contexto.ListaCompartilhada.FirstOrDefault(listaCompart => listaCompart.UsuarioId == usuarioId && listaCompart.ListaId == listaId);
@@ -45,6 +46,29 @@ public class ListaCompartilhadaController : ControllerBase
             return Ok(listaCompartiDto);
         }
         return NotFound();
+    }
+
+    [HttpGet("RecuperaListaUser")]
+    public IEnumerable<ReadListaCompartilhadaDto> RecuperaListaUsuario()
+    {
+        return _mapper.Map<List<ReadListaCompartilhadaDto>>(_contexto.ListaCompartilhada.ToList());
+    }
+
+
+    [HttpDelete("DeletarListaCompartilhada/{usuarioId}/{listaId}")]
+    public IActionResult DeletarListaCompartilhada(string usuarioId, int listaId)
+    {
+        var listaCompartilhada = _contexto.ListaCompartilhada.FirstOrDefault(listaCompartilhada => listaCompartilhada.UsuarioId == usuarioId && listaCompartilhada.ListaId == listaId);
+        if (listaCompartilhada != null)
+        {
+            _contexto.Remove(listaCompartilhada);
+            _contexto.SaveChanges();
+            return NoContent();
+        }
+
+        return NotFound();
+
+        
     }
 
 }
