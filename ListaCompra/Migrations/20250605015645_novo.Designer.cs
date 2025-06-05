@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ListaCompra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250604155118_mudancaDataLista")]
-    partial class mudancaDataLista
+    [Migration("20250605015645_novo")]
+    partial class novo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,19 +79,19 @@ namespace ListaCompra.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ListaDeComprasId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Product_Name")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<float?>("Quantity")
+                    b.Property<int?>("ListaDeComprasId")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("Quantidade")
                         .IsRequired()
                         .HasColumnType("real");
 
-                    b.Property<float?>("Value")
+                    b.Property<float?>("Valor")
                         .IsRequired()
                         .HasColumnType("real");
 

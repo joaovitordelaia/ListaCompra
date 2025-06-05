@@ -20,7 +20,7 @@ public class Produtos
     [Range(0.01, 9999.99)]
     public float? Quantidade { get; set; }
 
-    public int? ListaId { get; set; }
+    public int? ListaDeComprasId { get; set; }
 
 
 }

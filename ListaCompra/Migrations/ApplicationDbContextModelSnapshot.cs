@@ -81,7 +81,7 @@ namespace ListaCompra.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<int?>("ListaId")
+                    b.Property<int?>("ListaDeComprasId")
                         .HasColumnType("int");
 
                     b.Property<float?>("Quantidade")
@@ -94,7 +94,7 @@ namespace ListaCompra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ListaId");
+                    b.HasIndex("ListaDeComprasId");
 
                     b.ToTable("Produtos");
                 });
@@ -330,11 +330,9 @@ namespace ListaCompra.Migrations
 
             modelBuilder.Entity("ListaCompra.Models.Produtos", b =>
                 {
-                    b.HasOne("ListaCompra.Models.ListaDeCompras", "Lista")
+                    b.HasOne("ListaCompra.Models.ListaDeCompras", null)
                         .WithMany("Produtos")
-                        .HasForeignKey("ListaId");
-
-                    b.Navigation("Lista");
+                        .HasForeignKey("ListaDeComprasId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

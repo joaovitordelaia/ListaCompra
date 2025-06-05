@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ListaCompra.Migrations
 {
     /// <inheritdoc />
-    public partial class RefatorarParaIdentity : Migration
+    public partial class novo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -178,14 +178,39 @@ namespace ListaCompra.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ListaCompartilhada",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ListaId = table.Column<int>(type: "int", nullable: false),
+                    Datacriacao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ListaCompartilhada", x => new { x.UsuarioId, x.ListaId });
+                    table.ForeignKey(
+                        name: "FK_ListaCompartilhada_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ListaCompartilhada_ListaDeCompras_ListaId",
+                        column: x => x.ListaId,
+                        principalTable: "ListaDeCompras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Produtos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Product_Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    Value = table.Column<float>(type: "real", nullable: false),
-                    Quantity = table.Column<float>(type: "real", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Valor = table.Column<float>(type: "real", nullable: false),
+                    Quantidade = table.Column<float>(type: "real", nullable: false),
                     ListaDeComprasId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -238,6 +263,11 @@ namespace ListaCompra.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ListaCompartilhada_ListaId",
+                table: "ListaCompartilhada",
+                column: "ListaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ListaDeCompras_UsuarioId",
                 table: "ListaDeCompras",
                 column: "UsuarioId");
@@ -265,6 +295,9 @@ namespace ListaCompra.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "ListaCompartilhada");
 
             migrationBuilder.DropTable(
                 name: "Produtos");

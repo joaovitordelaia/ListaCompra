@@ -10,9 +10,9 @@ public class ReadProdutoDto
 
     public float? Valor { get; set; }
 
-    public float? Quantity { get; set; }
+    public float? Quantidade { get; set; }
 
-    public int? ListaId { get; set; }
+    public int? ListaDeComprasId { get; set; }
 
     public DateTime HoraConsulta { get; set; } = DateTime.Now;
 }
