@@ -18,4 +18,6 @@ public class CreateProdutoDto
     public float? Quantidade { get; set; }
 
     public int? listaDeComprasId { get; set; }
+
+    public bool StatusProd { get; set; } = true;
 }

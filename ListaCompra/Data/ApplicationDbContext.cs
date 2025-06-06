@@ -33,6 +33,11 @@ public class ApplicationDbContext : IdentityDbContext<Usuario>
 
             .HasForeignKey(listaCompartilhada => listaCompartilhada.UsuarioId);
 
+        builder.Entity<Produtos>()
+            .HasOne(produtos => produtos.ListaDeCompra)
+            .WithMany(listaDeCompra => listaDeCompra.Produtos)
+            .HasForeignKey(produtos => produtos.ListaDeComprasId)
+            .OnDelete(DeleteBehavior.Cascade);
 
     }
 

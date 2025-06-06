@@ -53,5 +53,18 @@ public class ListaCompraController : ControllerBase
 
     }
 
+    [HttpDelete("DeletarListaCompra/{id}")]
+    public IActionResult DeletarListaCompra(int id)
+    {
+        var listaCompra = _contexto.ListaDeCompras.FirstOrDefault(listaCompra => listaCompra.Id == id);
+        if (listaCompra != null)
+        {
+            _contexto.Remove(listaCompra);
+            _contexto.SaveChanges();
+            return NoContent();
+        }
+        return NotFound();
+    }
+
 
 }

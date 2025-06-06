@@ -30,13 +30,13 @@ public class ListaCompartilhadaController : ControllerBase
         _contexto.ListaCompartilhada.Add(listaCompartilhada);
         _contexto.SaveChanges();
 
-        return CreatedAtAction(nameof(RecuperaSessoesPorId),
+        return CreatedAtAction(nameof(RecuperaListaCompartPorId),
             new { usuarioId = listaCompartilhada.UsuarioId, listaId = listaCompartilhada.ListaId }, listaCompartilhada);
     }
 
 
     [HttpGet("vinculo/{usuarioId}/{listaId}")]
-    public IActionResult RecuperaSessoesPorId(string usuarioId, int listaId)
+    public IActionResult RecuperaListaCompartPorId(string usuarioId, int listaId)
     {
         ListaCompartilhadas listaCompartilhada = _contexto.ListaCompartilhada.FirstOrDefault(listaCompart => listaCompart.UsuarioId == usuarioId && listaCompart.ListaId == listaId);
         if (listaCompartilhada != null)

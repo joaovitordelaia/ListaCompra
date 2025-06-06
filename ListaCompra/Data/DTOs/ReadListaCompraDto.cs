@@ -12,5 +12,5 @@ public class ReadListaCompraDto
     // no caso quero apenas o nome, então posso por somente a propriedade que sera exibida
     public string UsuarioCriador { get; set; }
 
-    public virtual ICollection<Produtos> Produtos { get; set; }
+    public virtual ICollection<ReadProdutoDto> Produtos { get; set; }
 }

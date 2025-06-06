@@ -22,5 +22,9 @@ public class Produtos
 
     public int? ListaDeComprasId { get; set; }
 
+    public virtual ListaDeCompras ListaDeCompra { get; set; }
+
+    public bool StatusProd { get; set; }
+
 
 }

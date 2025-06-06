@@ -14,5 +14,7 @@ public class ReadProdutoDto
 
     public int? ListaDeComprasId { get; set; }
 
+    public bool StatusProd { get; set; }
+
     public DateTime HoraConsulta { get; set; } = DateTime.Now;
 }

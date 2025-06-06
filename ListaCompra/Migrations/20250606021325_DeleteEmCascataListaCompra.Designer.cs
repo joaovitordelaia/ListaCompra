@@ -4,6 +4,7 @@ using ListaCompra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ListaCompra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250606021325_DeleteEmCascataListaCompra")]
+    partial class DeleteEmCascataListaCompra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,9 +90,6 @@ namespace ListaCompra.Migrations
                     b.Property<float?>("Quantidade")
                         .IsRequired()
                         .HasColumnType("real");
-
-                    b.Property<bool>("StatusProd")
-                        .HasColumnType("bit");
 
                     b.Property<float?>("Valor")
                         .IsRequired()
