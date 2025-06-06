@@ -23,7 +23,14 @@ public class ProdutoController : ControllerBase
         _context = context;
         _mapper = mapper;
     }
-    
+
+    /// <summary>
+    /// Cadastra um novo produto
+    /// </summary>
+    /// <param name="produtoDto">Dados do produto</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="201">Produto criado com sucesso</response>
+    /// <remarks>Salva o produto e retorna o endereço para consulta.</remarks>
     [HttpPost("CadastrarProduto")]
     public IActionResult CriarProduto([FromBody] CreateProdutoDto produtoDto)
     {
@@ -37,6 +44,10 @@ public class ProdutoController : ControllerBase
         return CreatedAtAction(nameof(RecuperaProdutoPorId), new { id = produto.Id }, produto);
     }
 
+    /// <summary>
+    /// Lista todos os produtos
+    /// </summary>
+    /// <returns>Coleção de produtos</returns>
     [HttpGet("RecuperarProdutos")]
     public IEnumerable<ReadProdutoDto> LerProdutos()
     {
@@ -45,6 +56,13 @@ public class ProdutoController : ControllerBase
 
     }
 
+    /// <summary>
+    /// Recupera um produto pelo ID
+    /// </summary>
+    /// <param name="id">Identificador do produto</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Produto encontrado</response>
+    /// <response code="404">Produto não encontrado</response>
     [HttpGet("RecuperarProdutosID/{id}")]
     public IActionResult RecuperaProdutoPorId(int id)
     {
@@ -84,6 +102,14 @@ public class ProdutoController : ControllerBase
 
     }
 
+    /// <summary>
+    /// Atualiza parcialmente um produto
+    /// </summary>
+    /// <param name="id">Identificador do produto</param>
+    /// <param name="patch">Operações a serem aplicadas</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Produto atualizado com sucesso</response>
+    /// <response code="404">Produto não encontrado</response>
     [HttpPatch("AtualizaParcialProduto/{id}")]
     public IActionResult AtualizaParcial(int id, [FromBody] JsonPatchDocument<UpdateProdutoDto> patch)
     {
@@ -97,7 +123,8 @@ public class ProdutoController : ControllerBase
         if (!TryValidateModel(produtoAtualizar))
         {
             return ValidationProblem(ModelState);
-        
+
+
         }
 
         _mapper.Map(produtoAtualizar, produto);

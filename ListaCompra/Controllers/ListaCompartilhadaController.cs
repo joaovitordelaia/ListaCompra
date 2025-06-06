@@ -23,8 +23,15 @@ public class ListaCompartilhadaController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Cria o vínculo de compartilhamento de uma lista
+    /// </summary>
+    /// <param name="dto">Dados do vínculo</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="201">Vínculo criado com sucesso</response>
+    /// <remarks>Associa um usuário a uma lista de compras existente.</remarks>
     [HttpPost("CriarVinculoComp")]
-    public IActionResult AdicionaListaCompartilhada([FromBody]CreateListaCompartilhadaDto dto)
+    public IActionResult AdicionaListaCompartilhada([FromBody] CreateListaCompartilhadaDto dto)
     {
         ListaCompartilhadas listaCompartilhada = _mapper.Map<ListaCompartilhadas>(dto);
         _contexto.ListaCompartilhada.Add(listaCompartilhada);
@@ -35,6 +42,14 @@ public class ListaCompartilhadaController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Recupera o vínculo de uma lista compartilhada
+    /// </summary>
+    /// <param name="usuarioId">Id do usuário</param>
+    /// <param name="listaId">Id da lista</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Vínculo encontrado</response>
+    /// <response code="404">Vínculo não encontrado</response>
     [HttpGet("vinculo/{usuarioId}/{listaId}")]
     public IActionResult RecuperaListaCompartPorId(string usuarioId, int listaId)
     {
@@ -48,6 +63,10 @@ public class ListaCompartilhadaController : ControllerBase
         return NotFound();
     }
 
+    /// <summary>
+    /// Lista todos os vínculos de compartilhamento
+    /// </summary>
+    /// <returns>Coleção de vínculos</returns>
     [HttpGet("RecuperaListaUser")]
     public IEnumerable<ReadListaCompartilhadaDto> RecuperaListaUsuario()
     {
@@ -55,6 +74,14 @@ public class ListaCompartilhadaController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Remove um vínculo de lista compartilhada
+    /// </summary>
+    /// <param name="usuarioId">Id do usuário</param>
+    /// <param name="listaId">Id da lista</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Vínculo removido com sucesso</response>
+    /// <response code="404">Vínculo não encontrado</response>
     [HttpDelete("DeletarListaCompartilhada/{usuarioId}/{listaId}")]
     public IActionResult DeletarListaCompartilhada(string usuarioId, int listaId)
     {
@@ -68,7 +95,8 @@ public class ListaCompartilhadaController : ControllerBase
 
         return NotFound();
 
-        
+
+
     }
 
 }

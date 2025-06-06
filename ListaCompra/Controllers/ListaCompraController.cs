@@ -21,17 +21,33 @@ public class ListaCompraController : ControllerBase
     }
 
 
+    /// <summary>
+    /// Cria uma nova lista de compras
+    /// </summary>
+    /// <param name="ListaDto">Dados da lista de compras</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="201">Lista criada com sucesso</response>
+    /// <remarks>
+    /// Envie no corpo da requisição as informações da lista de compras.
+    /// </remarks>
     [HttpPost("CriarLista")]
-                    
+
     public IActionResult CriarListaCompra([FromBody] CreateListaComprasDto ListaDto)
     {
         ListaDeCompras listaCompra = _mapper.Map<ListaDeCompras>(ListaDto);
         _contexto.ListaDeCompras.Add(listaCompra);
         _contexto.SaveChanges();
 
-        return CreatedAtAction(nameof(ListarListaCompraPorId), new { id = listaCompra.Id}, listaCompra);
+        return CreatedAtAction(nameof(ListarListaCompraPorId), new { id = listaCompra.Id }, listaCompra);
     }
 
+    /// <summary>
+    /// Recupera uma lista de compras pelo ID
+    /// </summary>
+    /// <param name="id">Identificador da lista</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="200">Lista encontrada</response>
+    /// <response code="404">Lista não localizada</response>
     [HttpGet("ListarListasPorId/{id}")]
     public IActionResult ListarListaCompraPorId(int id)
     {
@@ -43,6 +59,10 @@ public class ListaCompraController : ControllerBase
 
     }
 
+    /// <summary>
+    /// Lista todas as listas de compras
+    /// </summary>
+    /// <returns>Coleção de listas de compras</returns>
     [HttpGet("ListarListas")]
     public IEnumerable<ReadListaCompraDto> ListarListaCompra()
     {
@@ -53,6 +73,13 @@ public class ListaCompraController : ControllerBase
 
     }
 
+    /// <summary>
+    /// Remove uma lista de compras
+    /// </summary>
+    /// <param name="id">Identificador da lista</param>
+    /// <returns>IActionResult</returns>
+    /// <response code="204">Lista removida com sucesso</response>
+    /// <response code="404">Lista não encontrada</response>
     [HttpDelete("DeletarListaCompra/{id}")]
     public IActionResult DeletarListaCompra(int id)
     {
