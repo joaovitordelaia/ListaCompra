@@ -1,0 +1,448 @@
+{
+	"info": {
+		"_postman_id": "f58e7503-71d7-4b3c-a3ad-e017550f88e0",
+		"name": "GestaoCompra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36258711"
+	},
+	"item": [
+		{
+			"name": "Listar Listas Compra",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/ListaCompra/ListarListas/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompra",
+						"ListarListas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Lista de Compra por Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/ListaCompra/ListarListasPorId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompra",
+						"ListarListasPorId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Compartilhada por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/ListaCompartilhada/vinculo/1cf811c9-2c98-4fb3-be82-ae836660c58f/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompartilhada",
+						"vinculo",
+						"1cf811c9-2c98-4fb3-be82-ae836660c58f",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listas Compartilhadas Todas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/ListaCompartilhada/RecuperaListaUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompartilhada",
+						"RecuperaListaUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarProdutos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjYjJkNmY4LTBmYTEtNGQ2NS05ZmVhLWI3ZjdiYTYyMTJlYiIsInVzZXJuYW1lIjoiam9hb3ZpdG9yIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZGF0ZW9mYmlydGgiOiIwMS8wMS8yMDAwIDAwOjAwOjAwIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiam9hb3ZkZWxhaWFAZ21haWwuY29tIiwibG9naW5UaW1lc3RhbXAiOiIwNS8wNi8yMDI1IDAwOjU3OjQwIiwiZXhwIjoxNzQ5MDg2MjYwfQ.zX4vFR6cm3nW27XrtYAXT63CQbF7-WzCAyijFD1IlPY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/Produto/RecuperarProdutos",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"Produto",
+						"RecuperarProdutos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarProdutosID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/Produto/RecuperarProdutosID/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"Produto",
+						"RecuperarProdutosID",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar o produto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/produto/DeletarProduto/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"produto",
+						"DeletarProduto",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Lista Compra",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/ListaCompra/DeletarListaCompra/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompra",
+						"DeletarListaCompra",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Lista Compartilhada",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/ListaCompartilhada/DeletarListaCompartilhada/1cf811c9-2c98-4fb3-be82-ae836660c58f/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompartilhada",
+						"DeletarListaCompartilhada",
+						"1cf811c9-2c98-4fb3-be82-ae836660c58f",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Produto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjYjJkNmY4LTBmYTEtNGQ2NS05ZmVhLWI3ZjdiYTYyMTJlYiIsInVzZXJuYW1lIjoiam9hb3ZpdG9yIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZGF0ZW9mYmlydGgiOiIwMS8wMS8yMDAwIDAwOjAwOjAwIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiam9hb3ZkZWxhaWFAZ21haWwuY29tIiwibG9naW5UaW1lc3RhbXAiOiIwNS8wNi8yMDI1IDAwOjU3OjQwIiwiZXhwIjoxNzQ5MDg2MjYwfQ.zX4vFR6cm3nW27XrtYAXT63CQbF7-WzCAyijFD1IlPY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"descricao\": \"Arroz 60kg 5\",\r\n  \"valor\": 60.50,\r\n  \"quantidade\": 2,\r\n  \"listaDeComprasId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/produto/CadastrarProduto",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"produto",
+						"CadastrarProduto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkMjQxNWUyLWQwZWMtNGJiZS04ZGMwLTRiNGQ2NzhkN2FkNyIsInVzZXJuYW1lIjoiUmF2aSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2RhdGVvZmJpcnRoIjoiMDEvMDEvMjAxMCAwMDowMDowMCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6IlJhdmlAZ21haWwuY29tIiwibG9naW5UaW1lc3RhbXAiOiIwMi8wNi8yMDI1IDE5OjM0OjU5IiwiZXhwIjoxNzQ4ODk0MDk5fQ.8Ix3ZPTvFViKXzvS2bmBO8Nrsp1tYsfjEKFTlF_OUZ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Username\": \"joaovitor4\",\r\n  \"Password\": \"Joao1234@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/Usuario/LoginUsuario",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"Usuario",
+						"LoginUsuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"UserName\": \"joaovitor4\",\r\n  \"DataNascimento\": \"2000-01-01\",\r\n  \"Email\": \"joaovdelaia@gmail.com\",\r\n  \"Senha\": \"Joao1234@\",\r\n  \"ReSenha\": \"Joao1234@\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/Usuario/CadastrarUsuario",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"Usuario",
+						"CadastrarUsuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Lista",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjYjJkNmY4LTBmYTEtNGQ2NS05ZmVhLWI3ZjdiYTYyMTJlYiIsInVzZXJuYW1lIjoiam9hb3ZpdG9yIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZGF0ZW9mYmlydGgiOiIwMS8wMS8yMDAwIDAwOjAwOjAwIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiam9hb3ZkZWxhaWFAZ21haWwuY29tIiwibG9naW5UaW1lc3RhbXAiOiIwNC8wNi8yMDI1IDE1OjQwOjUxIiwiZXhwIjoxNzQ5MDUyODUxfQ.6E2XJAD2J4v73Mizd9GKiJ_mU0oRGbcBqZnAnci1F2w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Nome\": \"Lista Teste\",\r\n  \"UsuarioId\": \"1cf811c9-2c98-4fb3-be82-ae836660c58f\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/ListaCompra/CriarLista",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompra",
+						"CriarLista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Vinculo de usuario com lista de compra",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UsuarioId\" : \"1cf811c9-2c98-4fb3-be82-ae836660c58f\",\r\n    \"ListaId\": \"1\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/ListaCompartilhada/CriarVinculoComp",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"ListaCompartilhada",
+						"CriarVinculoComp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualização Parcial do produto",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  { \"op\": \"replace\", \"path\": \"/descricao\", \"value\": \"Água com Gás Nestlé 1l\" },\r\n  { \"op\": \"replace\", \"path\": \"/valor\", \"value\": 15.99 },\r\n  { \"op\": \"replace\", \"path\": \"/StatusProd\", \"value\": 1}\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/produto/AtualizaParcialProduto/9",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"produto",
+						"AtualizaParcialProduto",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
